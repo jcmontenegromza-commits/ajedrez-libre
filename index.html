@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="description" content="Ajedrez hecho por y para personas ciegas. Jaque Libre para jugar y Análisis Libre para estudiar, con lector de pantalla. 15 días de prueba gratis.">
+<title>Ajedrez Libre, la tienda</title>
+<style>
+:root{--bg:#0d1226;--bg2:#141b3a;--card:#182047;--fg:#f4f6ff;--mut:#b9c2ee;--acc:#ffc247;--accfg:#1a1300;--blue:#7fa6ff;--line:#3a4690;--ok:#6be3a2}
+@media (prefers-color-scheme:light){:root{--bg:#f4f6ff;--bg2:#e6ebff;--card:#fff;--fg:#10152e;--mut:#3d4672;--acc:#b45f00;--accfg:#fff;--blue:#1f3fbf;--line:#9aa6dd;--ok:#11743d}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:1.125rem/1.6 system-ui,"Segoe UI",Roboto,Arial,sans-serif}
+a{color:var(--blue)}
+:focus-visible{outline:4px solid var(--acc);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:-999px;top:0;background:var(--acc);color:var(--accfg);padding:.8rem 1.2rem;font-weight:700;z-index:10}
+.skip:focus{left:0}
+.wrap{max-width:62rem;margin:0 auto;padding:0 1.1rem}
+header.top{padding:1rem 0;border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap}
+.brand{font-weight:800;font-size:1.3rem;letter-spacing:.01em}
+.brand span{color:var(--acc)}
+nav a{margin-left:1.1rem;font-weight:600;text-decoration:none;color:var(--fg)}
+nav a:hover{color:var(--acc)}
+.hero{background:radial-gradient(1200px 500px at 80% -10%,#2b3a96 0%,transparent 60%),linear-gradient(180deg,var(--bg2),var(--bg));padding:3.2rem 0 3rem;position:relative;overflow:hidden}
+@media (prefers-color-scheme:light){.hero{background:radial-gradient(1200px 500px at 80% -10%,#c9d5ff 0%,transparent 60%),linear-gradient(180deg,var(--bg2),var(--bg))}}
+.hero h1{font-size:clamp(2rem,6vw,3.6rem);line-height:1.1;margin:0 0 1rem;max-width:18ch}
+.hero h1 em{font-style:normal;color:var(--acc)}
+.hero p.lead{font-size:1.3rem;max-width:40rem;color:var(--mut);margin:0 0 1.6rem}
+.board{position:absolute;right:-30px;top:20px;width:300px;opacity:.16;transform:rotate(8deg);pointer-events:none}
+.badges{display:flex;flex-wrap:wrap;gap:.6rem;margin:0 0 1.6rem;padding:0;list-style:none}
+.badges li{background:var(--card);border:1px solid var(--line);padding:.35rem .9rem;border-radius:99px;font-size:1rem;font-weight:600}
+.btn{display:inline-block;font:inherit;font-weight:800;text-decoration:none;text-align:center;min-height:52px;padding:.8rem 1.4rem;border-radius:.7rem;border:2px solid var(--acc);background:var(--acc);color:var(--accfg);cursor:pointer;line-height:1.3}
+.btn:hover{filter:brightness(1.08)}
+.btn.sec{background:transparent;color:var(--fg);border-color:var(--line)}
+.btn.sec:hover{border-color:var(--acc)}
+section{padding:2.6rem 0}
+h2{font-size:clamp(1.6rem,4vw,2.2rem);margin:0 0 .4rem}
+h3{font-size:1.35rem;margin:0 0 .4rem}
+.sub{color:var(--mut);margin:0 0 1.6rem;max-width:44rem}
+.grid{display:grid;gap:1.4rem;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:1.1rem;padding:1.5rem;display:flex;flex-direction:column;gap:.8rem}
+.card header{display:flex;gap:1rem;align-items:center}
+.card header img{width:72px;height:72px;border-radius:16px;flex:none}
+.card ul{margin:.2rem 0 .4rem;padding-left:1.2rem}
+.card li{margin:.25rem 0}
+.tag{display:inline-block;font-size:.9rem;font-weight:700;color:var(--ok);border:1px solid var(--ok);border-radius:99px;padding:.1rem .7rem}
+.dl{display:grid;gap:.7rem;margin-top:auto}
+.dl .btn{text-align:left;display:flex;flex-direction:column}
+.dl .btn small{font-weight:500;opacity:.85}
+details{background:var(--card);border:1px solid var(--line);border-radius:.8rem;margin:.7rem 0;padding:.2rem 1.1rem}
+summary{cursor:pointer;font-weight:700;padding:.8rem 0;min-height:44px}
+details ol,details ul{margin:.2rem 0 1rem;padding-left:1.3rem}
+details li{margin:.4rem 0}
+.plans{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));margin:0 0 1.6rem;padding:0;list-style:none}
+.plans li{background:var(--card);border:1px solid var(--line);border-radius:1rem;padding:1.1rem;text-align:center}
+.plans b{display:block;font-size:2rem;color:var(--acc)}
+.plans .best{border-color:var(--acc);box-shadow:0 0 0 2px var(--acc)}
+form.buy{background:var(--card);border:1px solid var(--line);border-radius:1rem;padding:1.3rem;display:grid;gap:.8rem;max-width:34rem}
+label{font-weight:700}
+select{font:inherit;padding:.7rem;min-height:48px;border-radius:.5rem;border:2px solid var(--line);background:var(--bg);color:var(--fg);width:100%}
+.soon{opacity:.9;border-style:dashed}
+footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--mut);font-size:1rem}
+.note{font-size:1rem;color:var(--mut)}
+@media (max-width:640px){nav a{margin-left:.7rem}.board{display:none}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<a class="skip" href="#principal">Saltar al contenido</a>
+<header class="top"><div class="wrap">
+  <div class="brand">Ajedrez <span>Libre</span></div>
+  <nav aria-label="Secciones"><a href="#apps">Aplicaciones</a><a href="#instalar">Cómo instalar</a><a href="#precios">Precios</a><a href="#preguntas">Preguntas</a></nav>
+</div></header>
+
+<main id="principal">
+<div class="hero"><div class="wrap">
+  <svg class="board" viewBox="0 0 8 8" aria-hidden="true" focusable="false"><g id="sq"></g></svg>
+  <h1>Ajedrez para <em>todos</em>, hecho por y para personas ciegas</h1>
+  <p class="lead">Jugá, estudiá y analizá con tu lector de pantalla, con explicaciones en palabras y sin pelearte con la pantalla. También sirve para quien ve: tiene un modo visual con piezas y tablero.</p>
+  <ul class="badges" aria-label="Lo más importante">
+    <li>15 días de prueba gratis</li><li>Android y Windows</li><li>NVDA, JAWS, TalkBack y Jieshuo</li><li>Funciona sin internet</li>
+  </ul>
+  <a class="btn" href="#apps">Ver las aplicaciones</a>
+  <a class="btn sec" href="#instalar">Cómo instalar</a>
+</div></div>
+
+<section id="apps"><div class="wrap">
+  <h2>Las aplicaciones</h2>
+  <p class="sub">Dos aplicaciones que se complementan. Cada una tiene su prueba de 15 días, sin dar datos ni tarjeta.</p>
+  <div class="grid">
+    <article class="card" aria-labelledby="t-jaque">
+      <header><img src="img/jaque-icon.png" alt="" width="72" height="72"><div><h3 id="t-jaque">Jaque Libre</h3><span class="tag">Para jugar</span></div></header>
+      <p>Jugá contra el motor Stockfish, con 9 niveles o con el elo que elijas, con otra persona en el mismo dispositivo, o en línea por Lichess con tu cuenta.</p>
+      <ul>
+        <li>Escribís o dictás la jugada: e4, Cf3, “caballo efe tres”.</li>
+        <li>Te lee cada jugada, el tablero, filas, columnas y qué hay en cada casilla.</li>
+        <li>Pistas y evaluación cuando las pedís.</li>
+        <li>En Lichess: reloj, tablas, revancha, reclamar victoria y datos del rival.</li>
+        <li>Modo visual opcional para quien ve, con piezas que se arrastran.</li>
+      </ul>
+      <div class="dl" data-app="jaque">
+        <a class="btn" data-f="jaque-libre.apk" href="descargas/jaque-libre.apk" download>Descargar para Android<small>Archivo APK, 1,6 MB</small></a>
+        <a class="btn" data-big="Jaque-Libre-Windows-instalador.zip" href="descargas/Jaque-Libre-Windows-instalador.zip">Descargar para Windows<small>Instalador con el motor más fuerte, 89 MB</small></a>
+        <a class="btn sec" href="tutorial-jaque-libre.html">Cómo se usa, paso a paso</a>
+      </div>
+    </article>
+    <article class="card" aria-labelledby="t-analisis">
+      <header><img src="img/analisis-icon.png" alt="" width="72" height="72"><div><h3 id="t-analisis">Análisis Libre</h3><span class="tag">Para estudiar</span></div></header>
+      <p>El estudio de ajedrez explicado con palabras: aperturas, partidas famosas, planes y los estudios de Lichess, que por fin se pueden recorrer sin trabas.</p>
+      <ul>
+        <li>Explorador de aperturas con ideas, planes y trampas.</li>
+        <li>“Y ahora qué”: te dice qué conviene, por qué y hacia dónde vas.</li>
+        <li>Catorce partidas históricas jugada por jugada.</li>
+        <li>Estudios de Lichess por capítulos, con variantes y comentarios del autor.</li>
+        <li>Análisis con motor de cualquier partida y editor de posiciones.</li>
+      </ul>
+      <div class="dl" data-app="analisis">
+        <a class="btn" data-f="analisis-libre.apk" href="descargas/analisis-libre.apk" download>Descargar para Android<small>Archivo APK, 1,6 MB</small></a>
+        <a class="btn" data-big="Analisis-Libre-Windows-instalador.zip" href="descargas/Analisis-Libre-Windows-instalador.zip">Descargar para Windows<small>Instalador con el motor más fuerte, 89 MB</small></a>
+        <a class="btn sec" href="guia-analisis-libre.html">Leer la guía completa</a>
+      </div>
+    </article>
+    <article class="card soon" aria-labelledby="t-mano">
+      <header><div><h3 id="t-mano">Mano a Mano</h3><span class="tag">Próximamente</span></div></header>
+      <p>Una aplicación accesible para contratar servicios y productos de personas con discapacidad. Cada trabajo bien hecho, a mano.</p>
+    </article>
+  </div>
+</div></section>
+
+<section id="instalar" style="background:var(--bg2)"><div class="wrap">
+  <h2>Cómo instalar</h2>
+  <p class="sub">Elegí tu equipo. Cada paso está pensado para usar con lector de pantalla.</p>
+  <details><summary>En Android (TalkBack o Jieshuo)</summary>
+    <ol>
+      <li>Tocá “Descargar para Android” en la aplicación que quieras. Se baja un archivo que termina en .apk.</li>
+      <li>Abrí el archivo desde las notificaciones o desde la carpeta Descargas.</li>
+      <li>Android te va a pedir permiso para instalar aplicaciones de este origen. Activá “Permitir de esta fuente”. Es normal en aplicaciones que no están en Google Play.</li>
+      <li>Tocá Instalar y después Abrir.</li>
+      <li>La primera vez que dictás, aceptá el permiso del micrófono.</li>
+    </ol></details>
+  <details><summary>En Windows (NVDA o JAWS)</summary>
+    <ol>
+      <li>Descargá el archivo zip y descomprimilo en una carpeta. Con el menú contextual elegí “Extraer todo”.</li>
+      <li>Abrí la carpeta y ejecutá Instalar.bat. Crea un acceso en el escritorio y en el menú Inicio.</li>
+      <li>Abrí el acceso. Se abre como un programa, con Edge o Chrome. La primera vez tarda unos segundos en cargar el motor.</li>
+      <li>Si el navegador avisa sobre el archivo descargado, apretá Control más J y elegí Conservar.</li>
+      <li>Para sacarlo, ejecutá Desinstalar.bat.</li>
+    </ol></details>
+</div></section>
+
+<section id="precios"><div class="wrap">
+  <h2>Precios</h2>
+  <p class="sub">Probás 15 días gratis, sin compromiso. Si te sirve, elegís un plan. La licencia sirve para una aplicación en tu dispositivo.</p>
+  <ul class="plans" id="planes" aria-label="Planes"></ul>
+  <form class="buy" id="buy" aria-labelledby="t-buy">
+    <h3 id="t-buy">Pedir mi licencia</h3>
+    <div><label for="qApp">Aplicación</label>
+    <select id="qApp"><option>Jaque Libre</option><option>Análisis Libre</option><option>Las dos</option></select></div>
+    <div><label for="qPlan">Plan</label><select id="qPlan"></select></div>
+    <button class="btn" type="submit">Pedirla por WhatsApp</button>
+    <p class="note">Se abre WhatsApp con el mensaje armado. En la aplicación, en Ajustes, Licencia, copiás tu identificador y lo pegás en el chat. Te mando el código y lo pegás en la misma pantalla.</p>
+  </form>
+</div></section>
+
+<section id="preguntas" style="background:var(--bg2)"><div class="wrap">
+  <h2>Preguntas frecuentes</h2>
+  <details><summary>¿De verdad es gratis probarlo?</summary><p>Sí. Tenés 15 días con todo funcionando. No pide tarjeta ni datos.</p></details>
+  <details><summary>¿Necesito internet?</summary><p>No para jugar contra el motor, estudiar aperturas ni analizar. Sí para Lichess y para bajar estudios.</p></details>
+  <details><summary>¿Con qué lectores de pantalla funciona?</summary><p>NVDA y JAWS en Windows, TalkBack y Jieshuo en Android. También se puede usar sin lector, con el modo visual.</p></details>
+  <details><summary>¿Por qué Android dice que el archivo puede ser peligroso?</summary><p>Porque no se baja de Google Play. Es un aviso general para cualquier aplicación instalada por fuera. El archivo es el original de esta página.</p></details>
+  <details><summary>¿Puedo jugar partidas reales en Lichess?</summary><p>Sí. Conectás tu cuenta con un token y jugás con reloj, tablas, revancha y todo lo demás. El token queda solo en tu dispositivo.</p></details>
+  <details><summary>Me trabé o no entiendo algo</summary><p>Escribinos por WhatsApp desde el formulario de la sección Precios y te ayudamos.</p></details>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <p>Ajedrez Libre. Aplicaciones accesibles hechas en Mendoza, Argentina.</p>
+  <p class="note">Aplicaciones independientes. Stockfish es software libre. Lichess es una marca de sus dueños y no tiene relación con estas aplicaciones.</p>
+</div></footer>
+
+<script>
+(function(){
+  var WA='5492616564534';
+  var PLANES=[["Mensual","2","dólares"],["Anual","10","dólares"],["3 años","20","dólares"],["De por vida","30","dólares"]];
+  var ul=document.getElementById('planes'),sel=document.getElementById('qPlan');
+  PLANES.forEach(function(p,i){
+    var li=document.createElement('li');if(i===3)li.className='best';
+    li.innerHTML='<span>'+p[0]+'</span><b>'+p[1]+' USD</b><small>'+(i===3?'con todas las mejoras futuras':'por dispositivo')+'</small>';
+    ul.appendChild(li);
+    var o=document.createElement('option');o.textContent=p[0]+': '+p[1]+' dólares';sel.appendChild(o);
+  });
+  document.getElementById('buy').addEventListener('submit',function(e){
+    e.preventDefault();
+    var m='Hola, quiero la licencia de '+document.getElementById('qApp').value+', plan '+sel.value+'. Mi identificador es: ';
+    window.open('https://wa.me/'+WA+'?text='+encodeURIComponent(m),'_blank','noopener');
+  });
+  /* Tablero decorativo */
+  var g=document.getElementById('sq');if(g){var s='';for(var r=0;r<8;r++)for(var c=0;c<8;c++)if((r+c)%2)s+='<rect x="'+c+'" y="'+r+'" width="1" height="1" fill="currentColor"/>';g.innerHTML=s;g.parentNode.style.color='#9db3ff';}
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark light">
+<title>Cómo usar Jaque Libre</title>
+<style>
+:root{--bg:#0d1226;--fg:#f4f6ff;--mut:#b9c2ee;--acc:#ffc247;--line:#3a4690;--card:#182047}
+@media (prefers-color-scheme:light){:root{--bg:#f4f6ff;--fg:#10152e;--mut:#3d4672;--acc:#b45f00;--line:#9aa6dd;--card:#fff}}
+body{margin:0;background:var(--bg);color:var(--fg);font:19px/1.6 system-ui,Segoe UI,Arial,sans-serif}
+main{max-width:760px;margin:0 auto;padding:16px}
+h1{font-size:1.7rem}h2{font-size:1.3rem;margin-top:1.8rem;border-top:2px solid var(--line);padding-top:1rem}
+code{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:1px 6px}
+a{color:var(--acc)}a:focus-visible{outline:4px solid var(--acc);outline-offset:3px}
+li{margin:.4rem 0}
+</style></head><body><main>
+<p><a href="index.html">Volver a la tienda</a></p>
+<h1>Cómo usar Jaque Libre</h1>
+<p>Jaque Libre se maneja escribiendo o dictando. No hace falta ver el tablero ni tocar casillas. Todo lo que pasa lo lee tu lector de pantalla (NVDA, JAWS, TalkBack, Jieshuo o VoiceOver).</p>
+
+<h2>1. Empezar una partida</h2>
+<ol>
+<li>Abrí la aplicación. El foco queda en el cuadro de jugada.</li>
+<li>Escribí <code>nueva</code> para empezar otra partida. En Ajustes elegís contra quién jugás (motor, otra persona o Lichess), el nivel y el color.</li>
+<li>Escribí <code>ayuda</code> en cualquier momento para escuchar los comandos.</li>
+</ol>
+
+<h2>2. Jugar</h2>
+<p>Escribí o dictá la jugada y apretá Enter. Podés usar español, inglés o portugués.</p>
+<ul>
+<li><code>e4</code>: peón a e4.</li>
+<li><code>Cf3</code> o <code>caballo efe tres</code>: caballo a f3.</li>
+<li><code>e2e4</code>: de e2 a e4.</li>
+<li><code>enroque corto</code> o <code>O-O</code>; <code>enroque largo</code> o <code>O-O-O</code>.</li>
+<li><code>e8=D</code>: coronar a dama.</li>
+</ul>
+<p>Si dos piezas pueden ir al mismo lugar, la aplicación te avisa y escribís desde dónde, por ejemplo <code>Cbd2</code>. Si una jugada puede ser de dos piezas, te lee las opciones y elegís por número.</p>
+
+<h2>3. Escuchar el tablero</h2>
+<ul>
+<li><code>ultima</code> (o <code>l</code>): la última jugada.</li>
+<li><code>turno</code>: de quién es el turno.</li>
+<li><code>tablero</code>: todo el tablero.</li>
+<li><code>fila 4</code> o <code>s 4</code>: lo que hay en esa fila. <code>columna e</code> o <code>s e</code>: lo que hay en esa columna.</li>
+<li><code>casilla e4</code> o <code>ver e4</code>: qué hay en esa casilla. <code>desde e2</code>: adónde puede ir la pieza de e2.</li>
+<li><code>mis piezas</code>, <code>piezas rivales</code>, <code>jugadas legales</code>, <code>historial</code>, <code>material</code>.</li>
+<li>Dónde está una pieza: <code>p</code> peones, <code>d</code> dama, <code>t</code> torres, <code>a</code> alfiles, <code>c</code> caballos, <code>k</code> rey. Por ejemplo <code>p k</code> o simplemente <code>k</code>.</li>
+</ul>
+
+<h2>4. Pedir ayuda al motor</h2>
+<ul>
+<li><code>pista</code>: primero una idea, después la pieza, después la jugada con el motivo.</li>
+<li><code>evaluacion</code> y <code>analisis</code>: cómo está la posición.</li>
+<li><code>analizar partida</code>: califica todas las jugadas. <code>revisar</code>: recorrés la partida jugada por jugada.</li>
+</ul>
+
+<h2>5. Durante la partida</h2>
+<ul>
+<li><code>deshacer</code>: volver atrás. <code>tablas</code>: ofrecer tablas. <code>rendirse</code>: abandonar. <code>girar</code>: dar vuelta el tablero.</li>
+<li><code>tiempo</code>: lee el reloj. <code>repetir</code>: repite lo último que dijo.</li>
+</ul>
+
+<h2>6. Jugar en Lichess</h2>
+<ol>
+<li>En la sección Jugar en Lichess pegás tu token. Hay un botón que abre la página de Lichess para crearlo; tocás el botón de crear al final y copiás el código que empieza con lip_.</li>
+<li>Elegís el rival o el reto contra la computadora. Cuando empieza la partida, el foco va solo al cuadro de jugada.</li>
+<li>Comandos de Lichess: <code>rival</code> (o <code>o</code>) dice el nombre y el elo del rival; <code>reclamar</code> reclama la victoria si el rival se desconectó; <code>reclamar tablas</code>; <code>revancha</code> al terminar; <code>chat</code> y un texto para escribirle; <code>tablas</code>, <code>rendirse</code>, <code>abortar</code>, <code>rechazar</code>.</li>
+</ol>
+
+<h2>7. Modo compacto</h2>
+<p>En Ajustes podés activar el modo compacto. Quedan menos botones y el foco no sale del cuadro de jugada. Los demás botones se abren con el botón "Más opciones".</p>
+
+<h2>8. Prueba gratis y licencia</h2>
+<p>La prueba dura 15 días desde el primer uso. Después se pide una licencia. Para conseguirla, mandá un mensaje por WhatsApp desde la tienda y te pasamos el código.</p>
+
+<p><a href="index.html">Volver a la tienda</a></p>
+</main></body></html>
