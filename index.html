@@ -80,7 +80,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--mut);font-siz
   <h1>Ajedrez para <em>todos</em>, hecho por y para personas ciegas</h1>
   <p class="lead">Jugá, estudiá y analizá con tu lector de pantalla, con explicaciones en palabras y sin pelearte con la pantalla. También sirve para quien ve: tiene un modo visual con piezas y tablero.</p>
   <ul class="badges" aria-label="Lo más importante">
-    <li>15 días de prueba gratis</li><li>Android y Windows</li><li>NVDA, JAWS, TalkBack y Jieshuo</li><li>Funciona sin internet</li>
+    <li>15 días de prueba gratis</li><li>Android, Windows, iPhone y navegador</li><li>NVDA, JAWS, TalkBack y VoiceOver</li><li>Funciona sin internet</li>
   </ul>
   <a class="btn" href="#apps">Ver las aplicaciones</a>
   <a class="btn sec" href="#instalar">Cómo instalar</a>
@@ -91,7 +91,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--mut);font-siz
   <p class="sub">Dos aplicaciones que se complementan. Cada una tiene su prueba de 15 días, sin dar datos ni tarjeta.</p>
   <div class="grid">
     <article class="card" aria-labelledby="t-jaque">
-      <header><img src="img/jaque-icon.png" alt="" width="72" height="72"><div><h3 id="t-jaque">Jaque Libre</h3><span class="tag">Para jugar</span></div></header>
+      <header><img src="jaque/icon-192.png" alt="" width="72" height="72"><div><h3 id="t-jaque">Jaque Libre</h3><span class="tag">Para jugar</span></div></header>
       <p>Jugá contra el motor Stockfish, con 9 niveles o con el elo que elijas, con otra persona en el mismo dispositivo, o en línea por Lichess con tu cuenta.</p>
       <ul>
         <li>Escribís o dictás la jugada: e4, Cf3, “caballo efe tres”.</li>
@@ -103,11 +103,12 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--mut);font-siz
       <div class="dl" data-app="jaque">
         <a class="btn" data-f="jaque-libre.apk" href="descargas/jaque-libre.apk" download>Descargar para Android<small>Archivo APK, 1,6 MB</small></a>
         <a class="btn" data-big="Jaque-Libre-Windows-instalador.zip" href="descargas/Jaque-Libre-Windows-instalador.zip">Descargar para Windows<small>Instalador con el motor más fuerte, 89 MB</small></a>
+        <a class="btn sec" href="jaque/">Abrir en el navegador o iPhone<small>Sin instalar nada</small></a>
         <a class="btn sec" href="tutorial-jaque-libre.html">Cómo se usa, paso a paso</a>
       </div>
     </article>
     <article class="card" aria-labelledby="t-analisis">
-      <header><img src="img/analisis-icon.png" alt="" width="72" height="72"><div><h3 id="t-analisis">Análisis Libre</h3><span class="tag">Para estudiar</span></div></header>
+      <header><img src="analisis/icon-192.png" alt="" width="72" height="72"><div><h3 id="t-analisis">Análisis Libre</h3><span class="tag">Para estudiar</span></div></header>
       <p>El estudio de ajedrez explicado con palabras: aperturas, partidas famosas, planes y los estudios de Lichess, que por fin se pueden recorrer sin trabas.</p>
       <ul>
         <li>Explorador de aperturas con ideas, planes y trampas.</li>
@@ -119,6 +120,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--mut);font-siz
       <div class="dl" data-app="analisis">
         <a class="btn" data-f="analisis-libre.apk" href="descargas/analisis-libre.apk" download>Descargar para Android<small>Archivo APK, 1,6 MB</small></a>
         <a class="btn" data-big="Analisis-Libre-Windows-instalador.zip" href="descargas/Analisis-Libre-Windows-instalador.zip">Descargar para Windows<small>Instalador con el motor más fuerte, 89 MB</small></a>
+        <a class="btn sec" href="analisis/">Abrir en el navegador o iPhone<small>Sin instalar nada</small></a>
         <a class="btn sec" href="guia-analisis-libre.html">Leer la guía completa</a>
       </div>
     </article>
@@ -148,6 +150,16 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--mut);font-siz
       <li>Si el navegador avisa sobre el archivo descargado, apretá Control más J y elegí Conservar.</li>
       <li>Para sacarlo, ejecutá Desinstalar.bat.</li>
     </ol></details>
+  <details><summary>En iPhone (VoiceOver)</summary>
+    <ol>
+      <li>Abrí esta página en Safari y tocá “Abrir en el navegador o iPhone” en la aplicación que quieras.</li>
+      <li>Tocá el botón Compartir.</li>
+      <li>Elegí “Añadir a pantalla de inicio” y confirmá.</li>
+      <li>Desde ahí se abre como una aplicación más, sin barra de direcciones, y funciona sin internet.</li>
+      <li>Para dictar usá el micrófono del teclado del iPhone.</li>
+    </ol></details>
+  <details><summary>En cualquier navegador</summary>
+    <ol><li>Tocá “Abrir en el navegador o iPhone”. Funciona en Chrome, Edge, Firefox y Safari, en computadora o teléfono. Sin instalar nada.</li></ol></details>
 </div></section>
 
 <section id="precios"><div class="wrap">
@@ -168,7 +180,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--mut);font-siz
   <h2>Preguntas frecuentes</h2>
   <details><summary>¿De verdad es gratis probarlo?</summary><p>Sí. Tenés 15 días con todo funcionando. No pide tarjeta ni datos.</p></details>
   <details><summary>¿Necesito internet?</summary><p>No para jugar contra el motor, estudiar aperturas ni analizar. Sí para Lichess y para bajar estudios.</p></details>
-  <details><summary>¿Con qué lectores de pantalla funciona?</summary><p>NVDA y JAWS en Windows, TalkBack y Jieshuo en Android. También se puede usar sin lector, con el modo visual.</p></details>
+  <details><summary>¿Con qué lectores de pantalla funciona?</summary><p>NVDA y JAWS en Windows, TalkBack y Jieshuo en Android, VoiceOver en iPhone. También se puede usar sin lector, con el modo visual.</p></details>
   <details><summary>¿Por qué Android dice que el archivo puede ser peligroso?</summary><p>Porque no se baja de Google Play. Es un aviso general para cualquier aplicación instalada por fuera. El archivo es el original de esta página.</p></details>
   <details><summary>¿Puedo jugar partidas reales en Lichess?</summary><p>Sí. Conectás tu cuenta con un token y jugás con reloj, tablas, revancha y todo lo demás. El token queda solo en tu dispositivo.</p></details>
   <details><summary>Me trabé o no entiendo algo</summary><p>Escribinos por WhatsApp desde el formulario de la sección Precios y te ayudamos.</p></details>
