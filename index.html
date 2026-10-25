@@ -164,15 +164,27 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--mut);font-siz
 
 <section id="precios"><div class="wrap">
   <h2>Precios</h2>
-  <p class="sub">Probás 15 días gratis, sin compromiso. Si te sirve, elegís un plan. La licencia sirve para una aplicación en tu dispositivo.</p>
-  <ul class="plans" id="planes" aria-label="Planes"></ul>
+  <p class="sub">Probás 15 días gratis, sin compromiso y sin tarjeta. Si te sirve, elegís un plan. Cada licencia sirve para una aplicación en un dispositivo.</p>
+
+  <h3 id="t-ar">Si estás en Argentina: pagás en pesos con Mercado Pago</h3>
+  <ul class="plans" id="planesAr" aria-labelledby="t-ar">
+    <li><span>Anual</span><b>$17.500</b><small>por dispositivo</small></li>
+    <li><span>3 años</span><b>$35.000</b><small>por dispositivo</small></li>
+    <li class="best"><span>De por vida</span><b>$52.000</b><small>con todas las mejoras futuras</small></li>
+  </ul>
+  <p class="note">Se paga desde la propia aplicación: Ajustes, Licencia, elegís el plan y tocás Mercado Pago. Con tarjeta, dinero en cuenta o efectivo. Cuando se acredita el pago, el código llega a la aplicación en un momento.</p>
+
+  <h3 id="t-ex">Si estás en otro país: pagás en dólares con PayPal</h3>
+  <ul class="plans" id="planes" aria-labelledby="t-ex"></ul>
+  <p class="note">Elegí el plan, pagá con PayPal y pegá en el chat tu identificador. Te mando el código y lo pegás en la misma pantalla.</p>
+
   <form class="buy" id="buy" aria-labelledby="t-buy">
-    <h3 id="t-buy">Pedir mi licencia</h3>
+    <h3 id="t-buy">Pedir mi licencia o consultar</h3>
     <div><label for="qApp">Aplicación</label>
     <select id="qApp"><option>Jaque Libre</option><option>Análisis Libre</option><option>Las dos</option></select></div>
-    <div><label for="qPlan">Plan</label><select id="qPlan"></select></div>
+    <div><label for="qPlan">Plan (en dólares)</label><select id="qPlan"></select></div>
     <button class="btn" type="submit">Pedirla por WhatsApp</button>
-    <p class="note">Se abre WhatsApp con el mensaje armado. En la aplicación, en Ajustes, Licencia, copiás tu identificador y lo pegás en el chat. Te mando el código y lo pegás en la misma pantalla.</p>
+    <p class="note">Se abre WhatsApp con el mensaje armado. En la aplicación, en Ajustes, Licencia, copiás tu identificador y lo pegás en el chat.</p>
   </form>
 </div></section>
 
