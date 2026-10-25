@@ -232,7 +232,7 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--mut);font-siz
   o=(o.replace(/[^a-z0-9.-]/g,'').slice(0,24))||'directo';
   function ping(e){try{var u=API+'?e='+e+'&o='+encodeURIComponent(o);if(navigator.sendBeacon)navigator.sendBeacon(u);else fetch(u,{method:'POST',keepalive:true,mode:'no-cors'});}catch(x){}}
   ping('visita');
-  try{var h=new Date().toISOString().slice(0,10);if(localStorage.getItem('aj_u')!==h){localStorage.setItem('aj_u',h);ping('unica');}}catch(x){}
+  try{var h=new Date().toISOString().slice(0,10);if(localStorage.getItem('aj_u')!==h){localStorage.setItem('aj_u',h);setTimeout(function(){ping('unica');},2500);}}catch(x){}
   var MAPA=[['jaque-libre.apk','apk-jaque'],['analisis-libre.apk','apk-analisis'],['Jaque-Libre-Windows','win-jaque'],['Analisis-Libre-Windows','win-analisis'],['jaque/','web-jaque'],['analisis/','web-analisis']];
   document.addEventListener('click',function(ev){
     var a=ev.target.closest&&ev.target.closest('a[href]');if(!a)return;
