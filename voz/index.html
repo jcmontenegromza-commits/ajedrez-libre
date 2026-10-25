@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0b4f8a">
+<title>Voz de Juan</title>
+<style>
+:root{--bg:#fbfaf7;--fg:#161616;--ac:#0b4f8a;--ac2:#fff;--er:#a40e0e}
+@media (prefers-color-scheme:dark){:root{--bg:#121316;--fg:#f2f2f2;--ac:#7db8f0;--ac2:#0a1a2a;--er:#ff9a9a}}
+body{margin:0;background:var(--bg);color:var(--fg);font:20px/1.5 system-ui,Arial,sans-serif}
+main{max-width:640px;margin:0 auto;padding:20px 16px}
+h1{font-size:1.6rem}
+button{font:inherit;font-weight:700;min-height:56px;padding:10px 20px;border-radius:12px;border:2px solid var(--ac);background:var(--ac);color:var(--ac2);margin:8px 0}
+#e{font-weight:700;min-height:2em}.er{color:var(--er)}
+:focus-visible{outline:4px solid #f5a300;outline-offset:2px}
+</style></head><body><main>
+<h1>Voz de Juan</h1>
+<div id="e" role="status" aria-live="polite">Buscando tu servidor de voz…</div>
+<div id="m" role="alert" class="er"></div>
+<button type="button" id="r" hidden>Buscar de nuevo</button>
+<p id="p" style="font-size:.9rem" hidden>Si no aparece, el servidor de la nube no está encendido. Hay que abrir Colab en la computadora y ejecutar la celda.</p>
+<script>
+(function(){
+var K="juan-voz-4827",T="https://ntfy.sh/juan-voz-4827-nube/json?poll=1&since=24h";
+function $(i){return document.getElementById(i)}
+async function t(u,ms){var c=new AbortController(),x=setTimeout(function(){c.abort()},ms);try{return await fetch(u,{signal:c.signal})}finally{clearTimeout(x)}}
+async function ir(){
+ $("r").hidden=true;$("p").hidden=true;$("m").textContent="";$("e").textContent="Buscando tu servidor de voz…";
+ try{
+  var r=await t(T,8000),tx=await r.text(),u="";
+  tx.split("\n").forEach(function(l){try{var m=JSON.parse(l);if(m.message&&/^https:\/\/[a-z0-9-]+\.trycloudflare\.com$/.test(m.message.trim()))u=m.message.trim()}catch(e){}});
+  if(!u)throw new Error("sin aviso");
+  var h=await t(u+"/api/hola?k="+K,10000);var j=await h.json();
+  if(!h.ok||!j.ok)throw new Error("no responde");
+  $("e").textContent="Servidor encontrado. Abriendo…";
+  location.replace(u+"/?k="+K);
+ }catch(e){
+  $("e").textContent="";$("m").textContent="No encontré el servidor de voz encendido.";$("r").hidden=false;$("p").hidden=false;
+ }}
+$("r").addEventListener("click",ir);ir();
+})();
+</script></main></body></html>
