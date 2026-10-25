@@ -211,6 +211,24 @@ footer{border-top:1px solid var(--line);padding:2rem 0;color:var(--mut);font-siz
   /* Tablero decorativo */
   var g=document.getElementById('sq');if(g){var s='';for(var r=0;r<8;r++)for(var c=0;c<8;c++)if((r+c)%2)s+='<rect x="'+c+'" y="'+r+'" width="1" height="1" fill="currentColor"/>';g.innerHTML=s;g.parentNode.style.color='#9db3ff';}
 })();
+
+/* Contador anonimo: solo cuenta toques, no guarda datos personales */
+(function(){
+  var API='https://licencias-ajedrez.jcmontenegromza.workers.dev/c';
+  var q=new URLSearchParams(location.search),o=(q.get('o')||'').toLowerCase();
+  if(!o){try{o=document.referrer?new URL(document.referrer).hostname.replace(/^www\./,''):'directo';}catch(e){o='directo';}}
+  o=(o.replace(/[^a-z0-9.-]/g,'').slice(0,24))||'directo';
+  function ping(e){try{var u=API+'?e='+e+'&o='+encodeURIComponent(o);if(navigator.sendBeacon)navigator.sendBeacon(u);else fetch(u,{method:'POST',keepalive:true,mode:'no-cors'});}catch(x){}}
+  ping('visita');
+  try{var h=new Date().toISOString().slice(0,10);if(localStorage.getItem('aj_u')!==h){localStorage.setItem('aj_u',h);ping('unica');}}catch(x){}
+  var MAPA=[['jaque-libre.apk','apk-jaque'],['analisis-libre.apk','apk-analisis'],['Jaque-Libre-Windows','win-jaque'],['Analisis-Libre-Windows','win-analisis'],['jaque/','web-jaque'],['analisis/','web-analisis']];
+  document.addEventListener('click',function(ev){
+    var a=ev.target.closest&&ev.target.closest('a[href]');if(!a)return;
+    var h=a.getAttribute('href')||'';
+    for(var i=0;i<MAPA.length;i++){if(h.indexOf(MAPA[i][0])>-1){ping(MAPA[i][1]);return;}}
+  },true);
+  var f=document.getElementById('buy');if(f)f.addEventListener('submit',function(){ping('comprar');});
+})();
 </script>
 </body>
 </html>
